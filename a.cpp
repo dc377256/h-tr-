@@ -9,6 +9,7 @@
 using namespace std;
 bool check_number(string str) 
 {
+	bool isPass;
    int i;
    if (str[0] == '-')
    {
@@ -25,13 +26,16 @@ bool check_number(string str)
 	{
 		if(str[i] == '.')
 		{
-			return true;
+			isPass =  true;
 		}
 		else
-			return false
+			isPass = false;
+	}
+	else{
+	    isPass = true;
 	}
    }
-      return true;
+      return isPass;
 }
 int main(int argc, char** argv)
 {
