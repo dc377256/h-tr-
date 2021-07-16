@@ -18,9 +18,19 @@ bool check_number(string str)
    {
     i = 0;
    }
+   bool check = true;
    for (i; i < str.length(); i++)
-   if (isdigit(str[i]) == false)
-      return false;
+   {
+   	if (isdigit(str[i]) == false)
+	{
+		if(str[i] == '.')
+		{
+			return true;
+		}
+		else
+			return false
+	}
+   }
       return true;
 }
 int main(int argc, char** argv)
