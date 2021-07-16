@@ -1,4 +1,4 @@
-#include <ros/ros.h>
+
 #include <move_base_msgs/MoveBaseAction.h>
 #include <actionlib/client/simple_action_client.h>
 #include <iostream>
@@ -9,7 +9,7 @@
 using namespace std;
 bool check_number(string str) 
 {
-	 int i;
+   int i;
    if (str[0] == '-')
    {
    	i = 1;
@@ -18,17 +18,10 @@ bool check_number(string str)
    {
     i = 0;
    }
-   for (i;i < str.length(); i++)
-   {
-   	if (isdigit(str[i]) == false)
-   	{
-   		return false;
-  	 }
-   	else
-   	{
-      	return true;
-    }
-   }
+   for (i; i < str.length(); i++)
+   if (isdigit(str[i]) == false)
+      return false;
+      return true;
 }
 int main(int argc, char** argv)
 {
@@ -84,26 +77,5 @@ int main(int argc, char** argv)
  	}
  }
  //loop that send robot to waypoint
- for(int i = 0; i < x; i++)
-{
- ROS_INFO("Robot moved to waypoint [x,y,theta] = [%f, %f, %f].", goals[i][0], goals[i][1],  goals[i][2]);
- ros::Duration(3.0).sleep();
- goal.target_pose.pose.position.x = goals[i][0];
- goal.target_pose.pose.position.y = goals[i][1];
- goal.target_pose.pose.orientation.z = goals[i][2];
- goal.target_pose.pose.orientation.w = 1; // in 2D problem, w variable always = 1.
- ROS_INFO("Sending goal");
- ac.sendGoal(goal);
- ac.waitForResult();
- blink.publish(myMsg);
- ROS_INFO("Turn on the LED as fire suppression"); 
- ros::Duration(8.0).sleep(); // delay before making a next move.
- blink.publish(myMsg);
- 
-}
- if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
- ROS_INFO("Hooray, the base made to the exit");
- else
- ROS_INFO("The base failed to to the exit for some reason");
  return 0;
 }
