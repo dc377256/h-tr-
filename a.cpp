@@ -9,7 +9,8 @@
 using namespace std;
 bool check_number(string str) 
 {
-	bool isPass;
+   bool isPass;
+   bool isFirstDot.
    int i;
    if (str[0] == '-')
    {
@@ -24,12 +25,15 @@ bool check_number(string str)
    {
    	if (isdigit(str[i]) == false)
 	{
-		if(str[i] == '.')
+		if(str[i] == '.' && isFirstDot == false)
 		{
 			isPass =  true;
+			isFirstDot = true;
 		}
-		else
-			isPass = false;
+		else{
+		    isPass = false;
+			break;
+		}
 	}
 	else{
 	    isPass = true;
